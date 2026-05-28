@@ -4,9 +4,23 @@ import { FiSearch } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { HiOutlineUserCircle } from "react-icons/hi";
+import { IoMdTrash } from "react-icons/io";
+import { RiEditCircleLine } from "react-icons/ri";
+import { db } from "./config/firebase";
+import ContactCard from "./components/ContactCard";
 
 function App() {
   const [contacts, setContacts] = useState([]);
+
+  const [isOpen,setOpen]=useState(false);
+
+  const onOpen = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false)
+  };
 
   useEffect(() => {
     const getContacts = async () => {
